@@ -1,0 +1,27 @@
+<?xml version="1.0" ?><chattd>
+<options updated="initial">
+	<enabled enabled="now" time="30" type="disabled"/>
+	<actions>
+		<popup enabled="False"/>
+		<respond enabled="False"/>
+		<log enabled="False"/>
+		<autoreply enabled="True"/>
+	</actions>
+	<autoengine>
+		<replace replace="Hey!" trigger="hi"/>
+		<replace replace="I'm Homeschooled. You?" trigger="go school"/>
+		<replace replace="Bye, talk to you later!" trigger="bye"/>
+		<replace replace="Hmm... Take a look at http://iain.in/" trigger="like hobbies"/>
+	</autoengine>
+	<chatback>I'm Sorry, but Iain isn't able to answer the computer right now.
+I've been here idle for about $time mins.</chatback>
+	<notification>$name chatted you at $time with the message, '$msg'.
+	</notification>
+</options>
+<chats>
+	<person name="TesterZ">
+		<chat time="1257465989">Does this work?</chat>
+		<chat time="1257465989">Awesome!</chat>
+	</person>
+<person name="allelectricthings@gmail.com"><chat time="1265945175.29">does this work?</chat><chat time="1265945180.35">???</chat><chat time="1265945191.28">?!?!</chat><chat time="1265945191.29">I&amp;apos;m Sorry, but Iain isn&amp;apos;t able to answer the computer right now. I&amp;apos;ve been here idle for about 22:26 mins.</chat></person><person name=""><chat time="1267196314.9">(notice) This nickname is registered. Please choose a different nickname, or identify via &lt;B&gt;/msg NickServ identify &amp;lt;password&amp;gt;&lt;/B&gt;.</chat><chat time="1267196315.49">Received CTCP &amp;apos;VERSION&amp;apos; (to CodeJoust) from frigg</chat><chat time="1267196757.3">yo</chat></person><person name="Katie Brauer"><chat time="1267196351.69">yeah, suppose so</chat><chat time="1267196374.64">haha</chat><chat time="1267196377.3">sureee</chat><chat time="1267196412.01">haha, that&amp;apos;s cool</chat><chat time="1267196423.31">I didn&amp;apos;t know you could do that on facebook</chat><chat time="1267196481.54">300 lines of computer gibberish</chat><chat time="1267196497.03">suddenly reminds me of the last time I sawmy cousin</chat><chat time="1267196515.35">he was working on translating a computer language for work</chat><chat time="1267196576.46">the brilliance of people astounds me, almost as much as it amazes me that I could be related to them</chat><chat time="1267196617.82">thanks:)</chat><chat time="1267196708.49">I should probably get going.  too much schoolwork to do, wayyy too little time</chat><chat time="1267196746.1">yup</chat></person><person name="dtnraptor@gmail.com"><chat time="1267196764.22">yo autochat no work</chat><chat time="1267196773.79">MUHAHA</chat><chat time="1267196811.14">yo</chat><chat time="1267196818.89">lier</chat></person></chats>
+</chattd>
