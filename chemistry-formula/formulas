@@ -1,0 +1,57 @@
+#!/usr/bin/env python
+# Input = 2Na.3Cl + O.2H => OH
+import lib.render_formula
+import cgitb, cgi; cgitb.enable()
+
+class HTML:
+    styles = "body{max-width:600px; margin:0 auto; padding:10px;}.element{padding-top:15px;} a{color:#666}#syn:hover #syn-desc{visibility:visible;}#syn-desc{visibility:hidden;}.r{float:right;}#formula{width:300px; font-size:14px; } body{ font-family:helvetica;}"
+    help = \
+    """
+        <div class="help">
+            <p>To enter formulas:</p>
+            <a href="?formula=H.2O.4">H.2O.4</a> - 2 Hydrogen, 4 Oxygen<br />
+            <a href="?formula=H.2+O->H.2O">H.2+O->H.2O</a> - 2 Hydrogen + Oxygen = Water    
+            <br />
+            <a id="expand" href="#" onclick="document.getElementById('syn').style.display == 'none' ? 'block' : 'none';return false;">More Help</a>
+            <br />
+            <div style="display:none;" id="syn">Full Syntax: [{Moles(number)}]{ElementSymbol}[.{TimesElement(number)}] [+ {ElementSymbol}[.{Amount(number)}]]...<br/>
+                <small id="syn-desc">[] = Optional, {} = Add the specified variable, (number) = Use a integer input (ie. whole positive numbers)</small></div>
+                <dl><dt>For a Molecule:</dt><dd>
+                    [{Moles(number)}]{Elements}</dd><dt>
+                For an Element:</dt><dd>
+                    {ElementSymbol}[.{TimesElement(number)}]
+                </dd><dt>To join multiple elements use a '+' sign.
+                </dt><dt>Use -> to seperate product and reactants</dt>
+                <dt>Use one or more molecues before an -> sign, and one or more after the -> sign.</dt>
+                <dt>If you just want one molecue/element- type out that element (ie. H2)</dt>       
+            ... (can repeat)
+        </div>
+    """
+    form = \
+    """
+        <form name="cal" action="" method="get">
+            <p>
+            <label for="formula">Formula: </label>
+            <input name="formula" type="text" id="formula" />
+            <a class="r" href="#" onclick="document.getElementById('expand').onclick();">Help</a>
+            </p>
+        </form>
+    """     
+    def start(self, title):
+        print "Content-Type: text/html\n"
+        print "<html><head><title>" + title + "</title>"
+        print "<style type='text/css'>"+self.styles+"</style>"
+        print "</head>\n<body onload='document.getElementById('formula').focus()'>"
+    def body(self):
+	print self.form
+        if not lib.render_formula.formula_fetcher(cgi.FieldStorage()):
+            print self.help
+    def end(self):
+        print """<img src="http://www.python.org/community/logos/python-powered-w-70x28.png" /> </body></html>"""
+        
+
+if __name__ == "__main__":
+    page = HTML()
+    page.start("Formula Calculator")
+    page.body()
+    page.end()

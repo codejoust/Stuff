@@ -1,0 +1,48 @@
+#!/usr/bin/env python
+from lib.html import *
+import cgitb, cgi; cgitb.enable()
+
+class HTML:
+    styles = "body{max-width:600px; margin:0 auto; padding:10px;}.element{padding-top:15px;} a{color:#666}#syn:hover #syn-desc{visibility:visible;}#syn-desc{visibility:hidden;}.r{float:right;}#formula{width:300px; font-size:14px; } body{ font-family:helvetica;}"
+    form = \
+    """
+        <form name="cal" action="" method="get">
+            <p>
+            <label for="s">Symbol: </label>
+            <input name="s" type="text" id="formula" />
+            <a class="r" href="?showall">Help</a>
+            </p>
+        </form>
+    """
+    def start(self, title):
+        print "Content-Type: text/html\n\n"
+        print "<html><head><title>" + title + "</title>"
+        print "<style type='text/css'>"+self.styles+"</style>"
+        print "</head>\n<body>"
+    def help(self):
+        url = os.getenv('HTTP_REFERER')
+        t = Tag()
+        if (url):
+            print t.a('Go Back...', href=url)
+        print (t.e_div() + t.br() + t.div(t.a('Main Page', href='./formulas'), 'footer-links'))
+    def body(self):
+        print self.form
+    def show_symbol(self):
+        data = cgi.FieldStorage()
+        lookup = Lookup()
+        if ("s" in data):
+            lookup.get_symbol(data["s"].value)
+        elif ("showall" in data):
+            lookup.show_all()
+        else:
+            print "Please provide a symbol to lookup!"
+    def end(self):
+        print "</body></html>"
+
+if __name__ == "__main__":
+    page = HTML()
+    page.start("Formula Information")
+    page.body()
+    page.show_symbol()
+    page.help()
+    page.end()
